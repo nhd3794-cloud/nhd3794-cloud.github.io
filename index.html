@@ -148,6 +148,36 @@ a{color:inherit}
 .chips span{padding:2px 9px;border:1px solid var(--line);border-radius:3px;font-size:.82rem}
 .spec .out{background:var(--hl-soft);font-weight:700}
 
+/* 01 race */
+.race{margin-top:36px;display:grid;gap:16px}
+.race-h{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:8px}
+.race-h .mono{color:var(--sub)}
+.br3{display:grid;grid-template-columns:5rem minmax(0,1fr) 4.6rem;gap:10px;align-items:center;font-size:.86rem}
+.race .fillbar{transition:none}
+.rn{font-family:var(--mono);font-size:.82rem;font-weight:500;text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.race-sum{font-weight:900;font-size:clamp(1.05rem,2vw,1.25rem);transition:opacity .4s}
+.race.running .race-sum{opacity:0}
+
+/* 04 compare */
+.cmp{border:1px solid var(--ink);border-radius:4px;background:var(--surface);display:grid;grid-template-columns:1fr 1fr;min-width:0;align-self:start}
+.cmp-side{padding:14px;display:grid;gap:12px;align-content:start;min-width:0}
+.cmp-side.after{border-left:1px solid var(--line);background:color-mix(in srgb,var(--hl-soft) 55%,var(--surface))}
+@media (max-width:440px){.cmp{grid-template-columns:1fr}.cmp-side.after{border-left:none;border-top:1px solid var(--line)}}
+.cmp-h{display:grid;gap:1px}
+.cmp-h b{font-size:.98rem;font-weight:900}
+.cmp-h span{font-size:.76rem;font-weight:500}
+.before .cmp-h span{color:var(--red)} .after .cmp-h span{color:var(--green)}
+.runs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;min-height:10.6rem}
+.run{display:grid;gap:5px;align-content:start;min-width:0}
+.run .mono{font-size:.6rem;color:var(--sub);letter-spacing:0}
+.bk{height:22px;width:var(--w,100%);border:1px solid var(--sub);border-radius:3px;font-size:.72rem;display:flex;align-items:center;padding-left:5px;background:var(--bg);overflow:hidden;white-space:nowrap;animation:pop .35s both;animation-delay:calc(var(--i)*55ms)}
+.bk.x{border-style:dashed;background:transparent;color:var(--sub);font-size:.62rem}
+.after .bk{border-color:var(--ink);font-weight:700}
+.cmp-legend{grid-column:1/-1;border-top:1px solid var(--line);padding:10px 14px;font-size:.74rem;color:var(--sub);line-height:1.7}
+.decide.insight{row-gap:10px}
+.decide.insight strong{font-size:clamp(1rem,1.8vw,1.12rem);line-height:1.6}
+.decide.insight p{font-size:.94rem;color:var(--sub)}
+
 /* structure sim */
 .sim{border:1px solid var(--ink);border-radius:4px;background:var(--surface);min-width:0}
 .sim-h{display:flex;flex-wrap:wrap;gap:8px;justify-content:space-between;align-items:center;padding:12px 14px;border-bottom:1px solid var(--line)}
@@ -305,10 +335,55 @@ figcaption span{font-size:.8rem;color:var(--sub)}
 
 /* channels + extend pipeline */
 .channels{display:grid;gap:16px;margin-top:32px}
-@media (min-width:760px){.channels{grid-template-columns:1.2fr 1fr;align-items:start}}
+@media (min-width:760px){.channels{grid-template-columns:1fr 1fr;align-items:start}}
 .ch .shot{aspect-ratio:16/10}
-.ch2{border:1px solid var(--ink);border-radius:4px;padding:18px;display:grid;gap:10px;background:var(--surface)}
-.ch2 p{font-size:.95rem}
+.pict{display:block;width:100%;max-width:100%;aspect-ratio:16/10;border:1px solid var(--line);background:var(--surface);border-radius:4px;overflow:hidden}
+.pict svg{display:block;width:100%;height:100%}
+.pict .scr{fill:var(--bg);stroke:var(--ink);stroke-width:2}
+.pict .tx{font-family:var(--wide);font-weight:800;font-size:11px;fill:var(--green);letter-spacing:.02em}
+.pict .hlr{fill:var(--hl);transform-box:fill-box;transform-origin:left center}
+.pict .ln{stroke:var(--sub);stroke-width:4;stroke-linecap:round;opacity:.55}
+.pict .ln.b{stroke:var(--blue);opacity:1} .pict .ln.r{stroke:var(--red);opacity:1} .pict .ln.g{stroke:var(--green);opacity:1}
+.pict .stand{stroke:var(--ink);stroke-width:2;stroke-linecap:round}
+.pict .ptr{stroke:var(--ink);stroke-width:3;stroke-linecap:round;transform-box:fill-box;transform-origin:right bottom}
+.pict .ink{fill:var(--ink)}
+.pict .aud{fill:var(--sub);opacity:.75}
+@media (prefers-reduced-motion:no-preference){
+  .pict .hlr{animation:hlsweep 3.2s cubic-bezier(.6,0,.2,1) infinite}
+  .pict .ptr{animation:point 3.2s ease-in-out infinite}
+}
+@keyframes hlsweep{0%{transform:scaleX(0)}35%,85%{transform:scaleX(1)}100%{transform:scaleX(1);opacity:0}}
+@keyframes point{0%,100%{transform:rotate(0)}40%{transform:rotate(-5deg)}70%{transform:rotate(3deg)}}
+
+/* hero product line */
+.product{display:grid;gap:12px;margin-top:clamp(28px,4vw,44px);padding-top:18px;border-top:1px solid var(--ink);max-width:64rem}
+@media (min-width:860px){.product{grid-template-columns:auto minmax(0,1fr);gap:10px 44px;align-items:center}}
+.product>.mono{color:var(--sub);grid-column:1/-1}
+.pname{display:flex;flex-wrap:wrap;align-items:baseline;gap:.4em;font-family:var(--wide);font-variation-settings:"wdth" 125;font-weight:850;font-size:clamp(2rem,4.6vw,3.3rem);line-height:1;letter-spacing:-.03em}
+.pname b{font-weight:850}
+.pname span{font-family:var(--kr);font-variation-settings:normal;font-weight:700;font-size:.46em;letter-spacing:-.01em}
+.pdesc{font-size:1rem;color:var(--sub);max-width:34rem;line-height:1.7}
+.psample{grid-column:1/-1;font-family:var(--serif);font-size:clamp(1rem,1.9vw,1.2rem);line-height:2.5;margin-top:2px}
+.ps{position:relative;padding-bottom:1px;background:linear-gradient(currentColor,currentColor) no-repeat 0 100%/100% 2px}
+.ps::before{content:attr(data-l);position:absolute;left:0;top:-1.4em;font-family:var(--mono);font-size:.58rem;line-height:1}
+.ps.s{color:var(--blue)} .ps.v{color:var(--red)} .ps.o{color:var(--green)} .ps.m{color:var(--sub);background:none}
+.psample i{font-style:normal;color:var(--sub);margin-inline:.45em}
+@media (prefers-reduced-motion:no-preference){
+  .product{animation:up2 .8s cubic-bezier(.2,.7,.1,1) .55s both}
+  .ps{animation:uline .6s cubic-bezier(.6,0,.2,1) both;animation-delay:calc(1.1s + var(--k,0) * 180ms)}
+  .ps.v{--k:1} .ps.o{--k:2}
+}
+@keyframes up2{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@keyframes uline{from{background-size:0% 2px}to{background-size:100% 2px}}
+
+/* experiment: decision pulled out of the table */
+.down{display:flex;justify-content:center;padding:16px 0 12px}
+.down svg path{fill:var(--ink)}
+@media (prefers-reduced-motion:no-preference){.down svg{animation:bob 1.8s ease-in-out infinite}}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(5px)}}
+.decide{display:grid;grid-template-columns:6.5rem minmax(0,1fr);gap:12px;align-items:baseline;border-top:2px solid var(--ink);padding:16px 16px 0}
+.decide .mono{color:var(--sub);font-size:.72rem}
+.decide strong{font-size:clamp(1.1rem,2vw,1.3rem);font-weight:900;letter-spacing:-.01em}
 .pipe{list-style:none;padding:0;margin:40px 0 0;display:grid;gap:8px}
 @media (min-width:860px){.pipe{grid-template-columns:repeat(4,minmax(0,1fr));gap:0}}
 .pipe li{display:grid;gap:4px;align-content:start;padding:16px;border:1px solid var(--line);background:var(--surface);position:relative}
@@ -369,6 +444,11 @@ dialog.lb button{position:absolute;top:8px;right:8px;width:38px;height:38px;bord
       <span class="ln"><span style="--d:1">그 답을 고를 <span class="sweep">기준</span>을</span></span>
       <span class="ln"><span style="--d:2">먼저 만듭니다.</span></span>
     </h1>
+    <div class="product">
+      <span class="mono">WHAT I BUILT</span>
+      <p class="pname"><b>TEXT-RAY</b><span>영어 지문 분석기</span></p>
+      <p class="pdesc">영어 지문 하나를 넣으면 문장 구조 분석과 문법 포인트, 예상문제와 해설까지 약 2분 만에 나오는 AI 수업 도구</p>
+    </div>
     <div class="hero-low">
       <dl class="meta">
         <div><dt>NAME</dt><dd>송은우</dd></div>
@@ -404,16 +484,13 @@ dialog.lb button{position:absolute;top:8px;right:8px;width:38px;height:38px;bord
             <li><span>정답·해설 작성</span><span>반복</span></li>
           </ul>
           <p class="manual-loop">↻ 지문마다, 학생마다 처음부터</p>
-          <div class="calc" aria-labelledby="calc-t">
-            <span class="mono" id="calc-t">직접 계산해 보기 · 일주일 준비 시간</span>
-            <div class="ins">
-              <div><label for="c-stu">학생 수 <output id="o-stu" for="c-stu">5명</output></label><input type="range" id="c-stu" min="1" max="15" value="5"></div>
-              <div><label for="c-pas">학생당 주간 지문 <output id="o-pas" for="c-pas">4개</output></label><input type="range" id="c-pas" min="1" max="10" value="4"></div>
-            </div>
+          <div class="race" id="race" aria-labelledby="race-t">
+            <div class="race-h"><span class="mono" id="race-t">일주일 준비 시간 · 학생 5명 × 지문 4개 = 20개</span><button type="button" class="btn" id="race-re">↻ 다시 보기</button></div>
             <div class="bars">
-              <div class="br"><span>손으로</span><div class="track"><div class="fillbar a" id="b-a"></div><span class="val" id="v-a"></span></div></div>
-              <div class="br"><span>분석기로</span><div class="track"><div class="fillbar b" id="b-b"></div><span class="val" id="v-b"></span></div></div>
+              <div class="br3"><span>손으로</span><div class="track"><div class="fillbar a" id="r-a" style="width:100%"></div></div><span class="rn" id="n-a">10시간</span></div>
+              <div class="br3"><span>분석기로</span><div class="track"><div class="fillbar b" id="r-b" style="width:6.67%"></div></div><span class="rn" id="n-b">40분</span></div>
             </div>
+            <p class="race-sum" id="race-sum">같은 일주일에서 <span class="mk">9시간 20분</span>이 남습니다.</p>
             <p class="note">지문당 30분, 분석기 약 2분(자료 초안 기준)으로 계산한 예시입니다.</p>
           </div>
         </div>
@@ -468,14 +545,17 @@ dialog.lb button{position:absolute;top:8px;right:8px;width:38px;height:38px;bord
             <div class="row"><dt>결과</dt><dd>모델마다 잘하는 항목이 달랐습니다. 한 모델에 다 맡기지 않고 작업별로 쓰는 모델을 나눴습니다.</dd></div>
           </dl>
         </div>
-        <div class="spec rv">
-          <div class="think-h"><span class="mono">TEST SETUP</span><span class="mono" style="color:var(--sub)">비교 실험 설계</span></div>
-          <table>
-            <tr><th>통제</th><td>같은 지문, 같은 조건(프롬프트)</td></tr>
-            <tr><th>비교 대상</th><td><div class="chips"><span>Gemini</span><span>ChatGPT</span><span>Claude</span></div></td></tr>
-            <tr><th>평가 항목</th><td><div class="chips"><span>논리 구조 분석</span><span>문법 설명</span><span>문제 생성</span><span>해설 품질</span></div></td></tr>
-            <tr><th>결정</th><td class="out">작업별로 모델을 나눠 쓰기</td></tr>
-          </table>
+        <div class="rv" style="min-width:0">
+          <div class="spec">
+            <div class="think-h"><span class="mono">TEST SETUP</span><span class="mono" style="color:var(--sub)">비교 실험 설계</span></div>
+            <table>
+              <tr><th>통제</th><td>같은 지문, 같은 조건(프롬프트)</td></tr>
+              <tr><th>비교 대상</th><td><div class="chips"><span>Gemini</span><span>ChatGPT</span><span>Claude</span></div></td></tr>
+              <tr><th>평가 항목</th><td><div class="chips"><span>논리 구조 분석</span><span>문법 설명</span><span>문제 생성</span><span>해설 품질</span></div></td></tr>
+            </table>
+          </div>
+          <div class="down" aria-hidden="true"><svg viewBox="0 0 28 36" width="28" height="36"><path d="M9 2h10v17h7L14 33 2 19h7z"/></svg></div>
+          <div class="decide"><span class="mono">결정</span><strong><span class="mk">작업별로 모델을 나눠 쓰기</span></strong></div>
         </div>
       </div>
     </div>
@@ -491,16 +571,16 @@ dialog.lb button{position:absolute;top:8px;right:8px;width:38px;height:38px;bord
       </div>
       <p class="lede rv">Google AI Studio에서 출력 순서를 규칙으로 정했습니다. 지문이 달라도 ① 주제·논리 구조 → ② 주요 문장·문법 → ③ 핵심 어휘 → ④ 예상문제 → ⑤ 정답·해설 순서로 나옵니다.</p>
       <div class="grid2">
-        <div class="sim rv" id="sim">
-          <div class="sim-h">
-            <div class="seg-ctl" role="group" aria-label="모드">
-              <button type="button" id="m-free" aria-pressed="false">구조 고정 전</button>
-              <button type="button" id="m-fixed" aria-pressed="true">구조 고정 후</button>
-            </div>
-            <button type="button" class="btn" id="regen">↻ 다시 생성</button>
+        <div class="cmp rv" id="cmp" role="img" aria-label="구조 고정 전에는 생성할 때마다 순서와 분량이 다르고 빠지는 항목이 있었지만, 고정 후에는 언제나 1번부터 5번까지 같은 순서로 나온다는 비교 그림">
+          <div class="cmp-side before">
+            <div class="cmp-h"><b>구조 고정 전</b><span>같은 지문인데 매번 다름</span></div>
+            <div class="runs" id="runs-before"></div>
           </div>
-          <div class="sim-body" id="sim-body" aria-live="polite"></div>
-          <p class="sim-f">이해를 돕기 위해 단순화한 예시 화면입니다. 다시 생성을 눌러 두 모드를 비교해 보세요.</p>
+          <div class="cmp-side after">
+            <div class="cmp-h"><b>구조 고정 후</b><span>어떤 지문이든 같은 순서</span></div>
+            <div class="runs" id="runs-after"></div>
+          </div>
+          <p class="cmp-legend">① 주제·논리 구조 &nbsp;② 주요 문장·문법 &nbsp;③ 핵심 어휘 &nbsp;④ 예상문제 &nbsp;⑤ 정답·해설<br>막대 길이는 분량, 점선은 빠진 항목이에요. 이해를 돕기 위해 단순화한 그림입니다.</p>
         </div>
         <div class="rv">
           <span class="mono" style="color:var(--sub)">지문 하나에서 손으로 하던 일</span>
@@ -616,7 +696,23 @@ dialog.lb button{position:absolute;top:8px;right:8px;width:38px;height:38px;bord
       <div class="channels rv">
         <figure class="ch"><button type="button" class="shot" data-cap="무료 공개 때 쓴 TEXT-RAY 소개 이미지"><img src="textray.jpg" alt="문장을 끊어 읽고 문법과 해석을 보여주는 TEXT-RAY 화면"></button>
           <figcaption><b>1차 · 링크로 무료 공개</b><span>일반인, 학생, 영어 공부하는 사람 누구나 가입이나 결제 없이 쓰게 열고 첫 피드백을 받았습니다.</span></figcaption></figure>
-        <div class="ch ch2"><span class="mono" style="color:var(--sub)">2차 · 정돈한 프로그램으로 학원 시연</span><p>그다음엔 외부 지문을 매주 다루는 학원 강사에게 보여주기로 했습니다. 프로그램을 정돈해서, 인연이 없던 영어학원에 직접 연락해 자리를 잡았습니다. 실제 지문으로 결과가 나오는 과정을 강사들 앞에서 보여드렸고, 영어 팀장님이 수능 고난도 지문 두 개를 직접 넣어 확인했습니다.</p></div>
+        <figure class="ch"><div class="pict" role="img" aria-label="강사들 앞에서 화면으로 지문 분석 과정을 시연하는 그림">
+            <svg viewBox="0 0 320 200" aria-hidden="true">
+              <rect class="scr" x="62" y="16" width="176" height="112" rx="6"/>
+              <text class="tx" x="78" y="38">TEXT-RAY</text>
+              <rect class="hlr" x="76" y="53" width="132" height="14" rx="2"/>
+              <line class="ln b" x1="80" y1="61" x2="122" y2="61"/><line class="ln r" x1="130" y1="61" x2="148" y2="61"/><line class="ln" x1="156" y1="61" x2="204" y2="61"/>
+              <line class="ln" x1="80" y1="81" x2="160" y2="81"/><line class="ln g" x1="168" y1="81" x2="220" y2="81"/>
+              <line class="ln" x1="80" y1="101" x2="136" y2="101"/><line class="ln" x1="144" y1="101" x2="196" y2="101"/>
+              <line class="stand" x1="150" y1="128" x2="150" y2="142"/><line class="stand" x1="128" y1="142" x2="172" y2="142"/>
+              <line class="ptr" x1="266" y1="104" x2="224" y2="72"/>
+              <circle class="ink" cx="280" cy="78" r="11"/>
+              <path class="ink" d="M262 132 Q262 96 280 94 Q298 96 298 132 Z"/>
+              <circle class="aud" cx="106" cy="166" r="12"/><path class="aud" d="M84 200 Q84 182 106 180 Q128 182 128 200 Z"/>
+              <circle class="aud" cx="150" cy="170" r="12"/><path class="aud" d="M128 204 Q128 186 150 184 Q172 186 172 204 Z"/>
+              <circle class="aud" cx="194" cy="166" r="12"/><path class="aud" d="M172 200 Q172 182 194 180 Q216 182 216 200 Z"/>
+            </svg></div>
+          <figcaption><b>2차 · 정돈한 프로그램으로 학원 시연</b><span>외부 지문을 매주 다루는 학원 강사에게 보여주려고, 프로그램을 정돈해 인연이 없던 영어학원에 직접 연락했습니다. 실제 지문으로 결과가 나오는 과정을 시연했고, 영어 팀장님이 수능 고난도 지문 두 개를 직접 넣어 확인했습니다.</span></figcaption></figure>
       </div>
       <div class="grid2">
         <div class="rv">
@@ -632,7 +728,8 @@ dialog.lb button{position:absolute;top:8px;right:8px;width:38px;height:38px;bord
           </div>
           <p class="privacy">개인정보 보호를 위해 이름과 학교명은 가렸습니다.</p>
         </div>
-        <div class="req rv">
+        <div class="rv" style="min-width:0">
+        <div class="req">
           <div class="think-h"><span class="mono">학원이 보낸 시범 과제</span><span class="mono" style="color:var(--sub)">요구사항 정리</span></div>
           <ol>
             <li><span class="mono">A</span><span>고1 두 개 학교의 2학기 중간·기말 시험범위와 실제 시험지 공유</span></li>
@@ -641,12 +738,12 @@ dialog.lb button{position:absolute;top:8px;right:8px;width:38px;height:38px;bord
             <li class="key"><span class="mono">D</span><span>평가 기준은 실제 기출 적중률보다 학생에게 나눠 줄 문제의 품질</span></li>
             <li class="key"><span class="mono">E</span><span>비교 대상은 학원이 Gemini·ChatGPT로 직접 만들던 변형문제</span></li>
           </ol>
-          <div class="think" style="border:none;border-top:1px solid var(--ink);border-radius:0">
-            <dl>
-              <div class="row dec"><dt>읽은 것</dt><dd>이 고객의 경쟁 상대는 손으로 만드는 자료가 아니라, 이미 쓰고 있는 범용 AI였습니다.</dd></div>
-              <div class="row"><dt>의미</dt><dd>같은 AI를 쓰면서도 더 나은 품질과 일정한 형식을 보여줘야 쓸 이유가 생깁니다. 지금까지 쌓은 비교 기준과 출력 규칙이 그 차이였습니다.</dd></div>
-            </dl>
-          </div>
+        </div>
+        <div class="down" aria-hidden="true"><svg viewBox="0 0 28 36" width="28" height="36"><path d="M9 2h10v17h7L14 33 2 19h7z"/></svg></div>
+        <div class="decide insight">
+          <span class="mono">읽은 것</span><strong><span class="mk">이 고객의 경쟁 상대는 손으로 만드는 자료가 아니라, 이미 쓰고 있는 범용 AI였습니다.</span></strong>
+          <span class="mono">의미</span><p>같은 AI를 쓰면서도 더 나은 품질과 일정한 형식을 보여줘야 쓸 이유가 생깁니다. 지금까지 쌓은 비교 기준과 출력 규칙이 그 차이였습니다.</p>
+        </div>
         </div>
       </div>
     </div>
@@ -785,45 +882,47 @@ dialog.lb button{position:absolute;top:8px;right:8px;width:38px;height:38px;bord
     }, 700);
   }
 
-  /* calculator */
-  var stu = $('c-stu'), pas = $('c-pas');
-  function fmt(m){ if (m < 60) return m + '분'; var h = Math.floor(m/60), r = m % 60; return h + '시간' + (r ? ' ' + r + '분' : ''); }
-  function calc(){
-    var n = stu.value * pas.value, a = n * 30, b = n * 2, max = 15 * 10 * 30;
-    $('o-stu').textContent = stu.value + '명'; $('o-pas').textContent = pas.value + '개';
-    var wa = Math.max(a / max * 100, 1.5), wb = Math.max(b / max * 100, .8);
-    $('b-a').style.width = wa + '%'; $('b-b').style.width = wb + '%';
-    var va = $('v-a'), vb = $('v-b');
-    va.textContent = fmt(a) + ' · 지문 ' + n + '개'; vb.textContent = fmt(b);
-    if (wa > 55) { va.className = 'val in'; va.style.left = ''; } else { va.className = 'val'; va.style.left = 'calc(' + wa + '% + 8px)'; }
-    vb.className = 'val'; vb.style.left = 'calc(' + wb + '% + 8px)';
+  /* 01 race: same speed, one stops early */
+  var race = $('race'), rA = $('r-a'), rB = $('r-b'), nA = $('n-a'), nB = $('n-b'), racing = false;
+  function fmt(m){ m = Math.round(m); if (m < 60) return m + '분'; var h = Math.floor(m/60), r = m % 60; return h + '시간' + (r ? ' ' + r + '분' : ''); }
+  function runRace(){
+    if (reduce || racing) return;
+    racing = true; race.classList.add('running');
+    var T = 600, B = 40, D = 2600, t0 = null;
+    requestAnimationFrame(function step(ts){
+      if (t0 === null) t0 = ts;
+      var p = Math.min((ts - t0) / D, 1), m = T * p, mb = Math.min(m, B);
+      rA.style.width = (p * 100) + '%'; rB.style.width = (mb / T * 100) + '%';
+      nA.textContent = fmt(m); nB.textContent = fmt(mb);
+      if (p < 1) requestAnimationFrame(step); else { racing = false; race.classList.remove('running'); }
+    });
   }
-  stu.addEventListener('input', calc); pas.addEventListener('input', calc); calc();
+  $('race-re').addEventListener('click', runRace);
 
-  /* structure simulator */
-  var SECTIONS = ['주제·논리 구조','주요 문장·문법','핵심 어휘','예상문제','정답·해설'];
-  var VARIANTS = ['짧게 요약','길게 서술','표 형식','목록 형식','깊이 얕음','누락'];
-  var mode = 'fixed', body = $('sim-body');
+  /* 04 compare: before keeps changing, after stays fixed */
+  var NUM = '①②③④⑤';
   function shuffle(a){ a = a.slice(); for (var i = a.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
-  function renderSim(){
-    var html = '';
-    if (mode === 'fixed') {
-      html = SECTIONS.map(function(s, i){ return '<div class="blk ok" style="--i:' + i + '"><span>' + '①②③④⑤'[i] + ' ' + s + '</span><span class="tag">고정 순서 ✓</span></div>'; }).join('');
-    } else {
-      var order = shuffle(SECTIONS), drop = Math.floor(Math.random() * 3);
-      html = order.map(function(s, i){
-        if (i >= order.length - drop) return '<div class="blk miss" style="--i:' + i + '"><span>' + s + '</span><span class="tag">빠짐</span></div>';
-        var v = VARIANTS[Math.floor(Math.random() * 5)];
-        return '<div class="blk warn" style="--i:' + i + '"><span>' + s + '</span><span class="tag">' + v + '</span></div>';
-      }).join('');
-    }
-    body.innerHTML = html;
+  function runHTML(label, items){
+    return '<div class="run"><span class="mono">' + label + '</span>' + items.map(function(it, i){
+      return it === null ? '<div class="bk x" style="--i:' + i + '">빠짐</div>' : '<div class="bk" style="--i:' + i + ';--w:' + it.w + '%">' + NUM[it.n] + '</div>';
+    }).join('') + '</div>';
   }
-  function setMode(m){ mode = m; $('m-free').setAttribute('aria-pressed', m === 'free'); $('m-fixed').setAttribute('aria-pressed', m === 'fixed'); renderSim(); }
-  $('m-free').addEventListener('click', function(){ setMode('free'); });
-  $('m-fixed').addEventListener('click', function(){ setMode('fixed'); });
-  $('regen').addEventListener('click', renderSim);
-  renderSim();
+  function randRun(){
+    var o = shuffle([0,1,2,3,4]), drop = Math.floor(Math.random() * 3);
+    return o.map(function(n, i){ return i >= 5 - drop ? null : {n:n, w:35 + Math.round(Math.random() * 65)}; });
+  }
+  var FIRST = [
+    [{n:2,w:60},{n:0,w:95},{n:4,w:45},{n:1,w:80},null],
+    [{n:0,w:50},{n:3,w:100},{n:1,w:40},null,null],
+    [{n:1,w:85},{n:0,w:55},{n:2,w:70},{n:4,w:100},{n:3,w:38}]
+  ];
+  function drawBefore(runs){ $('runs-before').innerHTML = runs.map(function(r, i){ return runHTML('생성 ' + (i + 1), r); }).join(''); }
+  drawBefore(FIRST);
+  var fixed = [0,1,2,3,4].map(function(n){ return {n:n, w:100}; });
+  $('runs-after').innerHTML = [1,2,3].map(function(i){ return runHTML('지문 ' + i, fixed); }).join('');
+  var cmpTimer = null;
+  function startCmp(){ if (reduce || cmpTimer) return; cmpTimer = setInterval(function(){ drawBefore([randRun(), randRun(), randRun()]); }, 2600); }
+  function stopCmp(){ clearInterval(cmpTimer); cmpTimer = null; }
 
   /* editor demo */
   var DATA = [
@@ -881,12 +980,14 @@ dialog.lb button{position:absolute;top:8px;right:8px;width:38px;height:38px;bord
   if ('IntersectionObserver' in window) {
     var io = new IntersectionObserver(function(es){
       es.forEach(function(e){
+        if (e.target.id === 'cmp') { if (e.isIntersecting) startCmp(); else stopCmp(); return; }
         if (!e.isIntersecting) return;
         if (e.target === strike) strike.classList.add('on');
         if (e.target.id === 'loop') runLoop();
+        if (e.target.id === 'race') runRace();
       });
     }, {threshold:.5});
-    io.observe(strike); io.observe($('loop'));
+    io.observe(strike); io.observe($('loop')); io.observe(race); io.observe($('cmp'));
   } else { strike.classList.add('on'); }
 
   /* HUD: scene + progress */
